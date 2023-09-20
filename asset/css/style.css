@@ -1,0 +1,9 @@
+#game{
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    grid-template-rows: repeat(20, minmax(0, 1fr));
+    grid-gap: 5px;
+}
+
+.action{
+    font-weight: 800;
+}

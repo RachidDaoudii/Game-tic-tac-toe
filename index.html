@@ -5,10 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game tic tac toe</title>
     <link rel="stylesheet" href="asset/css/style.css">
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/6b0af4bcb3.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    
+    <div class="">
+        <h1 class="title flex justify-center p-4 text-sky-700 text-xl">Tic <span class="text-rose-700 px-1">Tac</span> Toe</h1>
+        <div class="players  flex justify-evenly p-4">
+            <div class="players__item">
+                <div class="players__item__name text-sky-700 player">Player 1</div>
+            </div>
+            <div class=" flex text-neutral-700">
+                <div class="scorePlayer1">0</div> 
+                <span> - </span>
+                <div class="scorePlayer2">0</div>
+            </div>
+            <div class="players__item">
+                <div class="players__item__name text-rose-700 player">Player 2</div>
+            </div>
+        </div>
+        <div class="result flex justify-center">
+            <button class="result__btn bg-gray-400 rounded-md w-20 p-1" id="restGame">Play again</button>
+        </div>
+        <div class="grid w-2/4 mx-auto pt-4" id="game"></div>
+        
+    </div>
 </body>
 <script src="asset/js/main.js"></script>
 </html>
