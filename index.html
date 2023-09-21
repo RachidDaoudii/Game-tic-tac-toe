@@ -5,31 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game tic tac toe</title>
     <link rel="stylesheet" href="asset/css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/6b0af4bcb3.js" crossorigin="anonymous"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 <body>
-    <div class="">
-        <h1 class="title flex justify-center p-4 text-sky-700 text-xl">Tic <span class="text-rose-700 px-1">Tac</span> Toe</h1>
-        <div class="players  flex justify-evenly p-4">
-            <div class="players__item">
-                <div class="players__item__name text-sky-700 player">Player 1</div>
+    <div class="bg-[url('/asset/images/home.jpg')] images boardUser">
+        <div class="">
+            <div>
+                <h1 class="title flex justify-center pt-20 text-teal-700 text-4xl font-semibold font-serif"><span class="text-teal-700 px-1">Game</span> Tic <span class="text-teal-700 px-1">Tac</span> Toe</h1>
             </div>
-            <div class=" flex text-neutral-700">
-                <div class="scorePlayer1">0</div> 
-                <span> - </span>
-                <div class="scorePlayer2">0</div>
-            </div>
-            <div class="players__item">
-                <div class="players__item__name text-rose-700 player">Player 2</div>
+            <div class="flex justify-center">
+                <form class="w-full max-w-md pt-20">
+                    <div class="flex items-center border-b border-teal-500 py-2">
+                      <input id="namePlayer1" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Name Player 1" aria-label="Full name">
+                      <input id="namePlayer2" required class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Name Player 2" aria-label="Full name">
+                      <button id="StartGame" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+                        Start Game
+                      </button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+    <div class="boardGame">
+        <h1 class="title flex justify-center pt-10 text-teal-700 text-4xl font-semibold font-serif"><span class="text-teal-700 px-1">Game</span> Tic <span class="text-teal-700 px-1">Tac</span> Toe</h1>
+        <div class="flex justify-around p-4">
+            <div class="flex flex-col justify-around">
+                <div class="players__item h-2/5 p-4 border-2 border-gray-300 rounded flex flex-col justify-center">
+                    <img src="asset/images/user1.png" class="w-28" alt="image Player 1">
+                    <div class="players__item__name1 text-sky-700 player text-center">Player X</div>
+                    <div id="scorePlayer1" class="text-center">0</div>
+                </div>
+                <div class="players__item h-2/5 p-4 border-2 border-gray-300 rounded flex flex-col justify-center">
+                    <img src="asset/images/user2.png" class="w-28" alt="image Player 2">
+                    <div class="players__item__name2 text-rose-700 player text-center">Player O</div>
+                    <div id="scorePlayer2" class="text-center">0</div>
+                </div>
+            </div>
+            <div class="grid " id="game"></div>
+            <div id="Score">
+                <h1 class="text-center text-2xl font-semibold font-serif text-teal-700">Score</h1>
+                <ul class="w-52 border-2 border-gray-300 rounded p-4">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>
+                </ul>
+            </div>
+            
+        </div>
+        
         <div class="result flex justify-center">
-            <button class="result__btn bg-gray-400 rounded-md w-20 p-1" id="restGame">Play again</button>
+            <button class="result__btn flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" onclick="restGame()" id="restGame">Play again</button>
         </div>
-        <div class="grid w-2/4 mx-auto pt-4" id="game"></div>
         
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://kit.fontawesome.com/6b0af4bcb3.js" crossorigin="anonymous"></script>
 <script src="asset/js/main.js"></script>
 </html>
