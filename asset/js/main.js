@@ -10,25 +10,30 @@ var StartGame = document.getElementById('StartGame')
 var namePlayer1 = document.getElementById("namePlayer1");
 var namePlayer2 = document.getElementById("namePlayer2");
 var Score = document.getElementById('Score');
-var listScore = localStorage.getItem("scoreGame")
-var scoreX = 0;
-var scoreO = 0;
 
-createGame()
+var listScore = localStorage.getItem("scoreGame")
+
+var ListAray = JSON.parse(listScore);
+
+
 
 if(localStorage.getItem('scoreGame') == null){
     localStorage.setItem("scoreGame", JSON.stringify([]));
 }
 
-var ListAray = JSON.parse(listScore);
-console.log(ListAray);
+createGame()
+getAllScore()
 
-// if(ListAray.length != 0){
-
-//     ListAray.sort(function(a, b) {
-//         console.log(b);
-//     });
-// }
+function getAllScore(){
+    ListAray.sort((a,b)=> b.score - a.score)
+    document.getElementById("ul").innerHTML = ""
+    for (let i = 0; i < ListAray.length; i++) {
+        let li = document.createElement("li");
+        li.classList.add("text-justify")
+        li.innerText = ListAray[i].namePlayer +" " +ListAray[i].score
+        document.getElementById("ul").append(li);
+    }
+}
 
 
 
@@ -51,16 +56,18 @@ function createGame() {
                 }
                 
                 checkWinner()
+                computer(cell)
             }
         });
-        game.appendChild(cell);
+        game.appendChild(cell);        
     }
+    
 }
 
 function checkWinner() {
     let winner = "";
-   
-    
+    let scoreX = 0;
+    let scoreO = 0;
     for (let j = 0; j < totalCells; j+=20) {
         for (let i = 0; i < 16; i++) {
             if (Actions[i+j] != "") {
@@ -91,7 +98,6 @@ function checkWinner() {
                         scoreO+=1;
                         getScorePlayer2.innerText = scoreO
                     }
-
                     break;
                 }
             }
@@ -99,7 +105,7 @@ function checkWinner() {
     }
     
     for (let j = 0; j < totalCells; j+=20) {
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 16; i++) {
             if (Actions[i+j] != "") {
                 if (Actions[i+j] === Actions[(i+j)+ 21] && Actions[(i+j)] === Actions[(i+j) + 42] && Actions[(i+j)] === Actions[(i+j) + 63] && Actions[(i+j)] === Actions[(i+j) + 84] ) {
                     winner = Actions[i+j];
@@ -119,7 +125,7 @@ function checkWinner() {
     for (let j = 0; j < totalCells; j+=20) {
         for (let i = 0; i < 20; i++) {
             if (Actions[i+j] != "") {
-                    if (Actions[i+j] === Actions[(i+j) -19] && Actions[(i+j)] === Actions[(i+j) - 38] && Actions[(i+j)] === Actions[(i+j) - 57] && Actions[(i+j)] === Actions[(i+j) - 76]) {
+                if (Actions[i+j] === Actions[(i+j) -19] && Actions[(i+j)] === Actions[(i+j) - 38] && Actions[(i+j)] === Actions[(i+j) - 57] && Actions[(i+j)] === Actions[(i+j) - 76]) {
                     winner = Actions[i+j];
                     if(winner == "X"){
                         scoreX+=1;
@@ -136,12 +142,6 @@ function checkWinner() {
 
     if (winner != "") {
 
-        if (winner == "X") {
-            winner = namePlayer1.value
-        }else{
-            winner = namePlayer2.value
-        }
-
         if (scoreX || scoreO != 0){
 
             playerWinner1 = {
@@ -153,18 +153,41 @@ function checkWinner() {
                 "namePlayer" : namePlayer2.value,
                 "score": scoreO
             }
+
+            ListAray.forEach((element,index) => {
+
+                if (playerWinner1.namePlayer == element.namePlayer &&  winner == "X") {
+                    ListAray[index].score = ListAray[index].score + 1
+                }
+                if (playerWinner2.namePlayer == element.namePlayer &&  winner == "O") { 
+                    ListAray[index].score = ListAray[index].score + 1
+                }
+                
+            });
+
+            if (!ListAray.some(element => element.namePlayer === playerWinner1.namePlayer)) {
+                ListAray.push(playerWinner1);
+            }
+            if (!ListAray.some(element => element.namePlayer === playerWinner2.namePlayer)) {
+                ListAray.push(playerWinner2);
+            }
+
+            localStorage.setItem("scoreGame", JSON.stringify(ListAray));        
             
-            ListAray.push(playerWinner1,playerWinner2)
-        
-            localStorage.setItem(
-                "scoreGame",
-                JSON.stringify(ListAray)
-            )
+        }
+
+        if (winner == "X") {
+            winner = namePlayer1.value
+        }else{
+            winner = namePlayer2.value
         }
         
         setTimeout(function() {
             Swal.fire({
-                title: "Player "+ winner +" has won the Tic Tac Toe game!",
+                title: 'Congratulations!',
+                html: 'Player <i class="fas fa-trophy"></i> '+ winner +' <i class="fas fa-trophy"></i> has won the Tic Tac Toe game!',
+                buttons: ["OK"],
+                confirmButtonText: 'Play again',
                 showClass: {
                   popup: 'animate__animated animate__fadeInDown'
                 },
@@ -173,12 +196,24 @@ function checkWinner() {
                 }
               }).then(() => {
                 restGame()
+                getAllScore()
               })
                 
         }, 500);
 
 
     }
+}
+
+function computer(cell){
+    console.log(Actions);
+    for (let j = 0; j < totalCells; j+=20) {
+        for (let i = 0; i < 16; i++) {
+            if (Actions[i+j] == "X") {
+                // document.getElementById(parseInt(cell.getAttribute("id"))+1).innerText = firstAction
+            }
+        }
+    } 
 }
 
 StartGame.addEventListener("click", function (){
