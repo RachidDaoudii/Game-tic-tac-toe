@@ -15,8 +15,6 @@ var listScore = localStorage.getItem("scoreGame")
 
 var ListAray = JSON.parse(listScore);
 
-
-
 if(localStorage.getItem('scoreGame') == null){
     localStorage.setItem("scoreGame", JSON.stringify([]));
 }
@@ -47,7 +45,7 @@ function createGame() {
             if (cell.innerText == "") {
                 Actions[i] = firstAction;
                 cell.innerText = firstAction;
-                firstAction = firstAction == "X" ? "O" : "X";
+                // firstAction = firstAction == "X" ? "O" : "X";
 
                 if (cell.innerText === "X" ) {
                     cell.classList.add("text-sky-700")
@@ -56,7 +54,7 @@ function createGame() {
                 }
                 
                 checkWinner()
-                computer(cell)
+                computer()
             }
         });
         game.appendChild(cell);        
@@ -206,11 +204,280 @@ function checkWinner() {
 }
 
 function computer(cell){
-    console.log(Actions);
-    for (let j = 0; j < totalCells; j+=20) {
-        for (let i = 0; i < 16; i++) {
-            if (Actions[i+j] == "X") {
-                // document.getElementById(parseInt(cell.getAttribute("id"))+1).innerText = firstAction
+    firstloop :for (let j = 0; j < totalCells; j+=20) {
+        for (let i = 0; i < 20; i++) {
+            if (Actions[i+j] === "X") {
+                if (Actions[(i+j)+ 1] == "X" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 4] = "O";
+                    document.getElementById((i+j) + 4).innerText = "O";
+                    document.getElementById((i+j) + 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "X" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "" && Actions[(i+j) + 4] == "X") {
+                    Actions[(i+j) + 3] = "O";
+                    document.getElementById((i+j) + 3).innerText = "O";
+                    document.getElementById((i+j) + 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "X" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "X") {
+                    Actions[(i+j) + 2] = "O";
+                    document.getElementById((i+j) + 2).innerText = "O";
+                    document.getElementById((i+j) + 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "X") {
+                    Actions[(i+j) + 1] = "O";
+                    document.getElementById((i+j) + 1).innerText = "O";
+                    document.getElementById((i+j) + 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "X" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "" && Actions[(i+j) + 4] == "X") {
+                    Actions[(i+j) + 2] = "O";
+                    document.getElementById((i+j) + 2).innerText = "O";
+                    document.getElementById((i+j) + 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 4] = "O";
+                    document.getElementById((i+j) + 4).innerText = "O";
+                    document.getElementById((i+j) + 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "X" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 4] = "O";
+                    document.getElementById((i+j) + 4).innerText = "O";
+                    document.getElementById((i+j) + 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "" && Actions[(i+j) + 4] == "X") {
+                    Actions[(i+j) + 3] = "O";
+                    document.getElementById((i+j) + 3).innerText = "O";
+                    document.getElementById((i+j) + 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "X") {
+                    Actions[(i+j) + 1] = "O";
+                    document.getElementById((i+j) + 1).innerText = "O";
+                    document.getElementById((i+j) + 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "X" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 3] = "O";
+                    document.getElementById((i+j) + 3).innerText = "O";
+                    document.getElementById((i+j) + 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 1] = "O";
+                    document.getElementById((i+j) + 1).innerText = "O";
+                    document.getElementById((i+j) + 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "X") {
+                    Actions[(i+j) + 2] = "O";
+                    document.getElementById((i+j) + 2).innerText = "O";
+                    document.getElementById((i+j) + 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "X" && Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 1] = "O";
+                    document.getElementById((i+j) + 1).innerText = "O";
+                    document.getElementById((i+j) + 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "" && Actions[(i+j)+ 1] == "X" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 2] = "O";
+                    document.getElementById((i+j) + 2).innerText = "O";
+                    document.getElementById((i+j) + 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "" && Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "X" && Actions[(i+j) + 3] == "" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 3] = "O";
+                    document.getElementById((i+j) + 3).innerText = "O";
+                    document.getElementById((i+j) + 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "" && Actions[(i+j)+ 1] == "" && Actions[(i+j) + 2] == "" && Actions[(i+j) + 3] == "X" && Actions[(i+j) + 4] == "") {
+                    Actions[(i+j) + 4] = "O";
+                    document.getElementById((i+j) + 4).innerText = "O";
+                    document.getElementById((i+j) + 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "X" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 4] = "O";
+                    document.getElementById((i+j) - 4).innerText = "O";
+                    document.getElementById((i+j) - 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "X" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "" && Actions[(i+j) - 4] == "X") {
+                    Actions[(i+j) - 3] = "O";
+                    document.getElementById((i+j) - 3).innerText = "O";
+                    document.getElementById((i+j) - 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "X" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "X") {
+                    Actions[(i+j) - 2] = "O";
+                    document.getElementById((i+j) - 2).innerText = "O";
+                    document.getElementById((i+j) - 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "X") {
+                    Actions[(i+j) - 1] = "O";
+                    document.getElementById((i+j) - 1).innerText = "O";
+                    document.getElementById((i+j) - 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "X" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "" && Actions[(i+j) - 4] == "X") {
+                    Actions[(i+j) - 2] = "O";
+                    document.getElementById((i+j) - 2).innerText = "O";
+                    document.getElementById((i+j) - 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 4] = "O";
+                    document.getElementById((i+j) - 4).innerText = "O";
+                    document.getElementById((i+j) - 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "X" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 4] = "O";
+                    document.getElementById((i+j) - 4).innerText = "O";
+                    document.getElementById((i+j) - 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "" && Actions[(i+j) - 4] == "X") {
+                    Actions[(i+j) - 3] = "O";
+                    document.getElementById((i+j) - 3).innerText = "O";
+                    document.getElementById((i+j) - 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "X") {
+                    Actions[(i+j) - 1] = "O";
+                    document.getElementById((i+j) - 1).innerText = "O";
+                    document.getElementById((i+j) - 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "X" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 3] = "O";
+                    document.getElementById((i+j) - 3).innerText = "O";
+                    document.getElementById((i+j) - 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 1] = "O";
+                    document.getElementById((i+j) - 1).innerText = "O";
+                    document.getElementById((i+j) - 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "X") {
+                    Actions[(i+j) - 2] = "O";
+                    document.getElementById((i+j) - 2).innerText = "O";
+                    document.getElementById((i+j) - 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "X" && Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 1] = "O";
+                    document.getElementById((i+j) - 1).innerText = "O";
+                    document.getElementById((i+j) - 1).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "" && Actions[(i+j)- 1] == "X" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 2] = "O";
+                    document.getElementById((i+j) - 2).innerText = "O";
+                    document.getElementById((i+j) - 2).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "" && Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "X" && Actions[(i+j) - 3] == "" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 3] = "O";
+                    document.getElementById((i+j) - 3).innerText = "O";
+                    document.getElementById((i+j) - 3).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else if (Actions[i+j] == "" && Actions[(i+j)- 1] == "" && Actions[(i+j) - 2] == "" && Actions[(i+j) - 3] == "X" && Actions[(i+j) - 4] == "") {
+                    Actions[(i+j) - 4] = "O";
+                    document.getElementById((i+j) - 4).innerText = "O";
+                    document.getElementById((i+j) - 4).classList.add("text-red-700")
+                    checkWinner()
+                    break firstloop;
+                }
+                else{
+                    for (let j = 0; j < totalCells; j+=20){
+                        if (Actions[(i+j)+ 20] == "X" && Actions[(i+j) + 40] == "X" && Actions[(i+j) + 60] == "X" && Actions[(i+j) + 80] == "") {
+                            Actions[(i+j) + 80] = "O";
+                            document.getElementById((i+j) + 80).innerText = "O";
+                            document.getElementById((i+j) + 80).classList.add("text-red-700")
+                            checkWinner()
+                            break firstloop;
+                        }
+                        else if (Actions[(i+j)+ 20] == "X" && Actions[(i+j) + 40] == "X" && Actions[(i+j) + 60] == "" && Actions[(i+j) + 80] == "X") {
+                            Actions[(i+j) + 60] = "O";
+                            document.getElementById((i+j) + 60).innerText = "O";
+                            document.getElementById((i+j) + 60).classList.add("text-red-700")
+                            checkWinner()
+                            break firstloop;
+                        }
+                        else if (Actions[(i+j)+ 20] == "X" && Actions[(i+j) + 40] == "" && Actions[(i+j) + 60] == "X" && Actions[(i+j) + 80] == "X") {
+                            Actions[(i+j) + 40] = "O";
+                            document.getElementById((i+j) + 40).innerText = "O";
+                            document.getElementById((i+j) + 40).classList.add("text-red-700")
+                            checkWinner()
+                            break firstloop;
+                        }
+                        else if (Actions[(i+j)+ 20] == "" && Actions[(i+j) + 40] == "X" && Actions[(i+j) + 60] == "X" && Actions[(i+j) + 80] == "X") {
+                            Actions[(i+j) + 20] = "O";
+                            document.getElementById((i+j) + 20).innerText = "O";
+                            document.getElementById((i+j) + 20).classList.add("text-red-700")
+                            checkWinner()
+                            break firstloop;
+                        }
+                        else if (Actions[(i+j)+ 20] == "X" && Actions[(i+j) + 40] == "" && Actions[(i+j) + 60] == "" && Actions[(i+j) + 80] == "X") {
+                            Actions[(i+j) + 40] = "O";
+                            document.getElementById((i+j) + 40).innerText = "O";
+                            document.getElementById((i+j) + 40).classList.add("text-red-700")
+                            checkWinner()
+                            break firstloop;
+                        }
+                        else if (Actions[(i+j)+ 20] == "" && Actions[(i+j) + 40] == "X" && Actions[(i+j) + 60] == "X" && Actions[(i+j) + 80] == "") {
+                            Actions[(i+j) + 80] = "O";
+                            document.getElementById((i+j) + 80).innerText = "O";
+                            document.getElementById((i+j) + 80).classList.add("text-red-700")
+                            checkWinner()
+                            break firstloop;
+                        }
+                        
+                    }
+                }
             }
         }
     } 
